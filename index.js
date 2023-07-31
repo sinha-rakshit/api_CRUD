@@ -6,6 +6,12 @@ const PORT = process.env.PORT || 3000; //process.env.PORT means watherver is in 
 
 app.use(bodyParser.json()); //line basically tells that we are going to use JSON data in the application
 
+app.get("/", (req, res) => {
+  console.log("Server Working");
+
+  res.send("Hello from Homepage.");
+});
+
 app.listen(PORT, () =>
   console.log(`Server Running on port :http://localhost:${PORT}`)
 );
