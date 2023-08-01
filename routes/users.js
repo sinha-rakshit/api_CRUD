@@ -17,7 +17,11 @@ router.post("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  res.send("THE GET ID ROUTE");
+  const { id } = req.params;
+
+  const FoundUser = users.find((user) => user.id === id);
+
+  res.send(FoundUser);
 });
 
 module.exports = router;
