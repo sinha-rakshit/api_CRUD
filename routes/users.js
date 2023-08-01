@@ -1,25 +1,23 @@
 const express = require("express");
+const { v4: uuidv4 } = require("uuid");
 const router = express.Router();
 
-const users = [
-  {
-    FirstName: "Aditya",
-    LastName: "Raj",
-    Age: 30,
-  },
-];
+const users = [];
 // all the routes in here are starting with /users
 router.get("/", (req, res) => {
   res.send(users);
 });
 
 router.post("/", (req, res) => {
-  console.log("Post Route Reached");
-
   const user = req.body;
-  users.push(user);
+
+  users.push({ ...user, id: uuidv4() });
 
   res.send(`User with the name ${user.FirstName} added to the Database`);
+});
+
+router.get("/:id", (req, res) => {
+  res.send("THE GET ID ROUTE");
 });
 
 module.exports = router;
